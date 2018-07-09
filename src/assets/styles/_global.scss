@@ -1,0 +1,144 @@
+@import 'normalize';
+
+// $cursive: 'Dancing Script', cursive;
+$cursive: 'Satisfy', cursive;
+$serif: 'EB Garamond', serif;
+$sans: 'Quicksand', sans-serif;
+
+$pink: #fe91e3;
+$darkpink: darken($pink, 40%);
+$blue: #aacfd8;
+$black: #000;
+
+$large-desktop: 1680px;
+$desktop: 1366px;
+$tablet-landscape: 1024px;
+$tablet-portrait: 768px;
+$phone-landscape: 650px;
+
+$gutter: 20px;
+
+// Colours.
+$colours: ( #9F6096, #DB5ABA, #C455A8, #CF8BA3, #D7A6B3, #8AB5CB, #75AEB7 );
+
+.transitional {
+	transition: background-color 0.25s ease-in;
+
+	@each $current-colour in $colours {
+		$i: index($colours, $current-colour);
+
+		&.background_#{$i} {
+			background-color: $current-colour;
+
+			.button {
+				-webkit-transform: perspective(1px) translateZ(0);
+				-webkit-transition-duration: 0.3s;
+				-webkit-transition-property: transform;
+				background-color: rgba(darken($current-colour, 8%), 0.55);
+				box-shadow: 0 0 1px transparent;
+				display: inline-block;
+				transform: perspective(1px) translateZ(0);
+				transition-duration: 0.3s;
+				transition-property: transform;
+				vertical-align: middle;
+
+				&:hover {
+					-webkit-transform: scale(1.05);
+					transform: scale(1.05);
+				}
+			} // .button
+
+			li a {
+				background-color: rgba(darken($current-colour, 8%), 0.55);
+				box-shadow: 0 0 1px transparent;
+				color: $black;
+				font-weight: 400;
+			}
+
+			li.is-active {
+
+				a {
+					font-weight: 600;
+
+					&:after {
+
+						@media (min-width: $tablet-portrait) {
+							border: solid transparent;
+							border-left-color: rgba(darken($current-colour, 8%), 0.55);
+							border-width: 31.5px;
+							content: '';
+							height: 0;
+							left: 100%;
+							pointer-events: none;
+							position: absolute;
+							top: 50%;
+							transform: translateY(-50%);
+							width: 0;
+						}
+					}
+				}
+			} // li.is-active
+
+			.card {
+				background-color: rgba(lighten($current-colour, 24%), 0.8);
+			}
+		}
+	} // background-colours loop
+} // .transitional
+
+h1 {
+	font-family: $cursive;
+	font-size: 45px;
+	margin: 0;
+	text-align: center;
+
+	@media (min-width: $tablet-portrait) {
+		font-size: 70px;
+	}
+} // h1
+
+.button {
+	border-radius: 5px;
+	font-size: 28px;
+	padding: $gutter / 2 $gutter;
+}
+
+.twitter {
+	font-size: 28px;
+	position: absolute;
+	right: $gutter;
+	top: $gutter;
+
+	a {
+		color: $black;
+	}
+}
+
+// Hide text meant only for screen readers.
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px;
+	overflow: hidden;
+	position: absolute !important;
+	width: 1px;
+
+	&:hover,
+	&:active,
+	&:focus {
+		background-color: $black;
+		box-shadow: 0 0 2px 2px rgba($black, 0.6);
+		clip: auto !important;
+		color: $black;
+		display: block;
+		font-size: 14px;
+		font-weight: 700;
+		height: auto;
+		left: 5px;
+		line-height: normal;
+		padding: 15px 23px 14px;
+		text-decoration: none;
+		top: 5px;
+		width: auto;
+		z-index: 10000;
+	}
+}
